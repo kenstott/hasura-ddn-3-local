@@ -1,0 +1,152 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Customers
+  fields:
+    - name: birthday
+      type: Timestamp
+    - name: city
+      type: Text
+    - name: continent
+      type: Text
+    - name: country
+      type: Text
+    - name: customerKey
+      type: Int8
+    - name: gender
+      type: Text
+    - name: name
+      type: Text
+    - name: state
+      type: Text
+    - name: stateCode
+      type: Text
+    - name: zipCode
+      type: Text
+  graphql:
+    typeName: MySubgraph_Customers
+    inputTypeName: MySubgraph_CustomersInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: my_pg
+      dataConnectorObjectType: Customers
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Customers
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - birthday
+          - city
+          - continent
+          - country
+          - customerKey
+          - gender
+          - name
+          - state
+          - stateCode
+          - zipCode
+
+---
+kind: ObjectBooleanExpressionType
+version: v1
+definition:
+  name: CustomersBoolExp
+  objectType: Customers
+  dataConnectorName: my_pg
+  dataConnectorObjectType: Customers
+  comparableFields:
+    - fieldName: birthday
+      operators:
+        enableAll: true
+    - fieldName: city
+      operators:
+        enableAll: true
+    - fieldName: continent
+      operators:
+        enableAll: true
+    - fieldName: country
+      operators:
+        enableAll: true
+    - fieldName: customerKey
+      operators:
+        enableAll: true
+    - fieldName: gender
+      operators:
+        enableAll: true
+    - fieldName: name
+      operators:
+        enableAll: true
+    - fieldName: state
+      operators:
+        enableAll: true
+    - fieldName: stateCode
+      operators:
+        enableAll: true
+    - fieldName: zipCode
+      operators:
+        enableAll: true
+  graphql:
+    typeName: MySubgraph_CustomersBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Customers
+  objectType: Customers
+  source:
+    dataConnectorName: my_pg
+    collection: Customers
+  filterExpressionType: CustomersBoolExp
+  orderableFields:
+    - fieldName: birthday
+      orderByDirections:
+        enableAll: true
+    - fieldName: city
+      orderByDirections:
+        enableAll: true
+    - fieldName: continent
+      orderByDirections:
+        enableAll: true
+    - fieldName: country
+      orderByDirections:
+        enableAll: true
+    - fieldName: customerKey
+      orderByDirections:
+        enableAll: true
+    - fieldName: gender
+      orderByDirections:
+        enableAll: true
+    - fieldName: name
+      orderByDirections:
+        enableAll: true
+    - fieldName: state
+      orderByDirections:
+        enableAll: true
+    - fieldName: stateCode
+      orderByDirections:
+        enableAll: true
+    - fieldName: zipCode
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: mySubgraph_customers
+    selectUniques: []
+    orderByExpressionType: MySubgraph_CustomersOrderBy
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Customers
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

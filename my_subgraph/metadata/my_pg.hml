@@ -1,0 +1,710 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: my_pg
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: MY_SUBGRAPH_MY_PG_READ_URL
+      write:
+        valueFromEnv: MY_SUBGRAPH_MY_PG_WRITE_URL
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        bool:
+          representation:
+            type: boolean
+          aggregate_functions:
+            bool_and:
+              result_type:
+                type: named
+                name: bool
+            bool_or:
+              result_type:
+                type: named
+                name: bool
+            every:
+              result_type:
+                type: named
+                name: bool
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: bool
+        float8:
+          representation:
+            type: float64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: float8
+            max:
+              result_type:
+                type: named
+                name: float8
+            min:
+              result_type:
+                type: named
+                name: float8
+            stddev:
+              result_type:
+                type: named
+                name: float8
+            stddev_pop:
+              result_type:
+                type: named
+                name: float8
+            stddev_samp:
+              result_type:
+                type: named
+                name: float8
+            sum:
+              result_type:
+                type: named
+                name: float8
+            var_pop:
+              result_type:
+                type: named
+                name: float8
+            var_samp:
+              result_type:
+                type: named
+                name: float8
+            variance:
+              result_type:
+                type: named
+                name: float8
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: float8
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: float8
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: float8
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: float8
+        int8:
+          representation:
+            type: int64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: numeric
+            bit_and:
+              result_type:
+                type: named
+                name: int8
+            bit_or:
+              result_type:
+                type: named
+                name: int8
+            bit_xor:
+              result_type:
+                type: named
+                name: int8
+            max:
+              result_type:
+                type: named
+                name: int8
+            min:
+              result_type:
+                type: named
+                name: int8
+            stddev:
+              result_type:
+                type: named
+                name: numeric
+            stddev_pop:
+              result_type:
+                type: named
+                name: numeric
+            stddev_samp:
+              result_type:
+                type: named
+                name: numeric
+            sum:
+              result_type:
+                type: named
+                name: numeric
+            var_pop:
+              result_type:
+                type: named
+                name: numeric
+            var_samp:
+              result_type:
+                type: named
+                name: numeric
+            variance:
+              result_type:
+                type: named
+                name: numeric
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: int8
+        numeric:
+          representation:
+            type: bigdecimal
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: numeric
+            max:
+              result_type:
+                type: named
+                name: numeric
+            min:
+              result_type:
+                type: named
+                name: numeric
+            stddev:
+              result_type:
+                type: named
+                name: numeric
+            stddev_pop:
+              result_type:
+                type: named
+                name: numeric
+            stddev_samp:
+              result_type:
+                type: named
+                name: numeric
+            sum:
+              result_type:
+                type: named
+                name: numeric
+            var_pop:
+              result_type:
+                type: named
+                name: numeric
+            var_samp:
+              result_type:
+                type: named
+                name: numeric
+            variance:
+              result_type:
+                type: named
+                name: numeric
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: numeric
+        text:
+          representation:
+            type: string
+          aggregate_functions:
+            max:
+              result_type:
+                type: named
+                name: text
+            min:
+              result_type:
+                type: named
+                name: text
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _ilike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _in:
+              type: in
+            _iregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _like:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nilike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _niregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nlike:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _nregex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            _regex:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            starts_with:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+            ts_match_tt:
+              type: custom
+              argument_type:
+                type: named
+                name: text
+        timestamp:
+          representation:
+            type: timestamp
+          aggregate_functions:
+            max:
+              result_type:
+                type: named
+                name: timestamp
+            min:
+              result_type:
+                type: named
+                name: timestamp
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: timestamp
+      object_types:
+        Customers:
+          fields:
+            birthday:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            city:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            continent:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            country:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            customerKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            gender:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            stateCode:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            zipCode:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        DataDictionary:
+          fields:
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            field:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            table:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+        ExchangeRates:
+          fields:
+            currency:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            exchange:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: float8
+        Products:
+          fields:
+            brand:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            category:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            categoryKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            color:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            productKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            productName:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            subcategory:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            subcategoryKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            unitCostUSD:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: float8
+            unitPriceUSD:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: float8
+        Sales:
+          fields:
+            currencyCode:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            customerKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            deliveryDate:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            lineItem:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            orderDate:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            orderNumber:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            productKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            quantity:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+            storeKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+        Stores:
+          fields:
+            country:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            openDate:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: timestamp
+            squareMeters:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: float8
+            state:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: text
+            storeKey:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: int8
+        z:
+          fields:
+            z:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: bool
+      collections:
+        - name: Customers
+          arguments: {}
+          type: Customers
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: DataDictionary
+          arguments: {}
+          type: DataDictionary
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: ExchangeRates
+          arguments: {}
+          type: ExchangeRates
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: Products
+          arguments: {}
+          type: Products
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: Sales
+          arguments: {}
+          type: Sales
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: Stores
+          arguments: {}
+          type: Stores
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: z
+          arguments: {}
+          type: z
+          uniqueness_constraints: {}
+          foreign_keys: {}
+      functions: []
+      procedures: []
+    capabilities:
+      version: 0.1.2
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+        mutation:
+          transactional: {}
+          explain: {}
+        relationships:
+          relation_comparisons: {}
+          order_by_aggregate: {}
